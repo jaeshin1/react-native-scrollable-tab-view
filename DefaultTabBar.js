@@ -17,16 +17,16 @@ const DefaultTabBar = React.createClass({
     activeTextColor: React.PropTypes.string,
     inactiveTextColor: React.PropTypes.string,
     textStyle: Text.propTypes.style,
-    tabStyle: ViewPropTypes.style,
+    //tabStyle: ViewPropTypes.style,
     renderTab: React.PropTypes.func,
-    underlineStyle: ViewPropTypes.style,
+    //underlineStyle: ViewPropTypes.style,
   },
 
   getDefaultProps() {
     return {
-      activeTextColor: 'navy',
-      inactiveTextColor: 'black',
-      backgroundColor: null,
+      activeTextColor: '#272727',
+      inactiveTextColor: '#A4A4A4',
+      backgroundColor: 'white',
     };
   },
 
@@ -36,10 +36,10 @@ const DefaultTabBar = React.createClass({
   renderTab(name, page, isTabActive, onPressHandler) {
     const { activeTextColor, inactiveTextColor, textStyle, } = this.props;
     const textColor = isTabActive ? activeTextColor : inactiveTextColor;
-    const fontWeight = isTabActive ? 'bold' : 'normal';
+    const fontWeight = isTabActive ? 'normal' : 'normal';
 
     return <Button
-      style={styles.flexOne}
+      style={{flex: 1, }}
       key={name}
       accessible={true}
       accessibilityLabel={name}
@@ -47,7 +47,7 @@ const DefaultTabBar = React.createClass({
       onPress={() => onPressHandler(page)}
     >
       <View style={[styles.tab, this.props.tabStyle, ]}>
-        <Text style={[{color: textColor, fontWeight, }, textStyle, ]}>
+        <Text style={[{color: textColor, fontWeight, fontSize: 16, fontFamily:'Eurostile' }, textStyle, ]}>
           {name}
         </Text>
       </View>
@@ -60,8 +60,8 @@ const DefaultTabBar = React.createClass({
     const tabUnderlineStyle = {
       position: 'absolute',
       width: containerWidth / numberOfTabs,
-      height: 4,
-      backgroundColor: 'navy',
+      height: 2,
+      backgroundColor: '#272727',
       bottom: 0,
     };
 
@@ -86,16 +86,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 10,
-  },
-  flexOne: {
-    flex: 1,
+    paddingBottom: 3,
+      // borderBottomWidth:0.5,
+      // borderColor: '#D5D8DC',
   },
   tabs: {
-    height: 50,
+    height: 35,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    borderWidth: 1,
+    justifyContent: 'space-between',
+    borderWidth: 0,
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
